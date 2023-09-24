@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_customer_image"
+            circleCropEnabled="@{true}"
+            loadImage="@{customer.imageUrl}"
+            placeholder="@{@drawable/ic_user_default}"
+            android:layout_width="@dimen/customer_list_item_image_size"
+            android:layout_height="@dimen/customer_list_item_image_size"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_user_default"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/map_fragment" />
+
+        <TextView
+            android:id="@+id/tv_customer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif"
+            android:maxLines="2"
+            android:text="@{customer.firstName + ' ' + customer.lastName}"
+            android:textColor="@color/black_86"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/iv_customer_image"
+            app:layout_constraintTop_toBottomOf="@id/iv_customer_image"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/tv_customer_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:text="@{customer.gender}"
+            android:textColor="@color/black_56"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tv_customer_name"
+            app:layout_constraintTop_toBottomOf="@id/cg_stickers"
+            tools:text="Female" />
+
+        <TextView
+            android:id="@+id/tv_customer_numb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLines="2"
+            android:text="@{customer.phoneNumber}"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/divider"
+            app:layout_constraintTop_toTopOf="@id/tv_customer_gender"
+            tools:text="@tools:sample/us_phones" />
+
+        <TextView
+            android:id="@+id/tv_address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif"
+            android:maxLines="2"
+            android:text="@string/address_name"
+            android:textAllCaps="true"
+            android:textColor="@color/black_56"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tv_customer_gender"
+            app:layout_constraintTop_toBottomOf="@id/tv_customer_gender" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:maxLines="2"
+            android:text="@{customer.address.toString()}"
+            android:textColor="@color/black_86"
+            app:layout_constraintStart_toStartOf="@id/tv_customer_gender"
+            app:layout_constraintTop_toBottomOf="@id/tv_address_title"
+            tools:text="123 Main St, San Francisco, 94111, US" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/black_32"
+            app:layout_constraintBottom_toBottomOf="@id/tv_customer_gender"
+            app:layout_constraintStart_toEndOf="@id/tv_customer_gender"
+            app:layout_constraintTop_toTopOf="@id/tv_customer_gender" />
+
+        <fragment
+            android:id="@+id/map_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/customer_detail_map_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_stickers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_customer_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_customer_name"
+            stickers="@{customer.stickers}"/>
+
+        <ImageView
+            android:id="@+id/imv_customer_detail_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:onClick="@{() -> viewModel.onCustomerDetailBackPress()}"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_back_24px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="customer"
+            type="com.shahrukhamd.deviceholder.data.model.Customer" />
+
+        <variable
+            name="viewModel"
+            type="com.shahrukhamd.deviceholder.ui.list.CustomerViewModel" />
+
+    </data>
+
+</layout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/customerListFragment">
+
+    <fragment
+        android:id="@+id/customerListFragment"
+        android:name="com.shahrukhamd.deviceholder.ui.list.CustomerListFragment"
+        android:label="CustomerListFragment">
+
+        <action
+            android:id="@+id/action_listFragment_to_detailsFragment"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:destination="@id/customerDetailsFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/customerDetailsFragment"
+        android:name="com.shahrukhamd.deviceholder.ui.details.CustomerDetailsFragment"
+        android:label="CustomerDetailsFragment">
+
+        <argument
+            android:name="customer"
+            app:argType="com.shahrukhamd.deviceholder.data.model.Customer"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+    </fragment>
+
+</navigation>

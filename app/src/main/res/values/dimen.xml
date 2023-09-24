@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="customer_list_item_image_size">64dp</dimen>
+    <dimen name="customer_detail_map_height">250dp</dimen>
+</resources>

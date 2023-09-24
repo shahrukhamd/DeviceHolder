@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.onCustomerItemClicked(customer)}">
+
+        <ImageView
+            android:id="@+id/iv_customer_image"
+            circleCropEnabled="@{true}"
+            loadImage="@{customer.imageUrl}"
+            placeholder="@{@drawable/ic_user_default}"
+            android:layout_width="@dimen/customer_list_item_image_size"
+            android:layout_height="@dimen/customer_list_item_image_size"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_user_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_customer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif"
+            android:maxLines="2"
+            android:text="@{customer.firstName + ' ' + customer.lastName}"
+            android:textColor="@color/black_86"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_customer_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_customer_image"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/tv_customer_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:text="@{customer.gender}"
+            android:textColor="@color/black_56"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_customer_name"
+            app:layout_constraintStart_toEndOf="@+id/tv_customer_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_customer_name"
+            tools:text="Female" />
+
+        <TextView
+            android:id="@+id/tv_customer_numb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLines="2"
+            android:textSize="16sp"
+            android:text="@{customer.phoneNumber}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_customer_image"
+            app:layout_constraintStart_toEndOf="@+id/iv_customer_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_customer_name"
+            tools:text="@tools:sample/us_phones" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="customer"
+            type="com.shahrukhamd.deviceholder.data.model.Customer" />
+
+        <variable
+            name="viewModel"
+            type="com.shahrukhamd.deviceholder.ui.list.CustomerViewModel" />
+
+    </data>
+</layout>
